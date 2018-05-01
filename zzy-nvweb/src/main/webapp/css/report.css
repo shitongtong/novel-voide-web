@@ -1,0 +1,7 @@
+.report-link .report { height: 22px; padding: 4px 0; min-width: 1px; }
+.report-link .report a { float:right; display: none; }
+
+.report-comment .report a { margin-left: 10px; display: none; float: right; min-width: 1px; }
+.report-comment .report a:hover { border: none; }
+
+.gact a:hover { border: none; }
