@@ -372,3 +372,22 @@ a.bn-sharing:hover {
     background: none
 }
 
+#link-report .report {
+    text-align: right;
+    font-size: 12px;
+    visibility: hidden;
+}
+
+#link-report .report a {
+    color: #BBB;
+}
+
+#link-report .report a:hover {
+    color: #FFF;
+    background-color: #BBB;
+}
+
+.intro p {
+    text-indent: 2em;
+    word-break: normal;
+}

@@ -27,7 +27,6 @@ public class HomeServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        User user = (User) req.getAttribute("user");
         String userUuid = req.getParameter("userUuid");
         UserService userService = new UserService();
         User user = userService.findByUserUuid(userUuid);

@@ -2,7 +2,6 @@ package com.zzy.service;
 
 import com.zzy.db.DBOperation;
 import com.zzy.po.Novel;
-import com.zzy.po.User;
 import com.zzy.util.UUIDUtil;
 
 import java.util.ArrayList;
@@ -91,5 +90,24 @@ public class NovelService {
         String sql = "update novel set status=0 where novel_uuid=?";
         String[] params = new String[]{novelUuid};
         return DBOperation.executeUpdate(sql, params);
+    }
+
+    public Novel findByNovelUuid(String novelUuid) {
+        String sql = "select novel_uuid,name,url,author,intro,photo,create_time from novel where status=1 and novel_uuid=?";
+        String[] params = new String[]{novelUuid};
+        List<List<Object>> lists = DBOperation.executeQuery(sql, params, 7);
+        if (lists.size()==0){
+            return null;
+        }
+        List<Object> objects = lists.get(0);
+        Novel novel = new Novel();
+        novel.setNovelUuid((String) objects.get(0));
+        novel.setName((String) objects.get(1));
+        novel.setUrl((String) objects.get(2));
+        novel.setAuthor((String) objects.get(3));
+        novel.setIntro((String) objects.get(4));
+        novel.setPhoto((String) objects.get(5));
+        novel.setCreateTime((Date) objects.get(6));
+        return novel;
     }
 }

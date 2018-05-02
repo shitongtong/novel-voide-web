@@ -1,7 +1,5 @@
 package com.zzy.servlet.user;
 
-import com.zzy.po.User;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

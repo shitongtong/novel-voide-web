@@ -5,12 +5,11 @@
 <html lang="zh-cmn-Hans" class="ua-mac ua-webkit">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="Sun, 6 Mar 2005 01:00:00 GMT">
     <title>
         ${user.name}
     </title>
-
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="Sun, 6 Mar 2005 01:00:00 GMT">
 
     <link href="/css/douban.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" defer="" async="" src="/js/piwik.js"></script>
@@ -18,21 +17,20 @@
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/do.js" data-cfg-autoload="false"></script>
     <script type="text/javascript" src="/js/douban.js"></script>
-
-
     <script type="text/javascript" src="/js/follow.js"></script>
     <script type="text/javascript" src="/js/jquery-ui-sortable.js"></script>
     <script type="text/javascript" src="/js/mine_dragdrop.js"></script>
-
-    <script src="/js/ga.js" async="true"></script>
+    <script src="/js/ga.js" ></script>
+    <link href="/css/bundle.css" rel="stylesheet" type="text/css">
+    <script src="/js/bundle.js" defer="defer"></script>
+    <link href="/css/bundle(1).css" rel="stylesheet" type="text/css">
+    <script src="/js/bundle(2).js" defer="defer"></script>
+    <script type="text/javascript" src="/js/ajaxfileupload.js"></script>
+    <script type="text/javascript" src="/js/imgsel.js"></script>
+    <script type="text/javascript" src="/js/userguide.js"></script>
 </head>
 
 <body>
-
-
-<link href="/css/bundle.css" rel="stylesheet" type="text/css">
-
-
 <div id="db-global-nav" class="global-nav">
     <div class="bd">
 
@@ -62,7 +60,6 @@
             </ul>
         </div>
 
-
         <div class="global-nav-items">
             <ul>
                 <li class="on">
@@ -83,12 +80,6 @@
     </div>
 </div>
 
-
-<script src="/js/bundle.js" defer="defer"></script>
-
-<link href="/css/bundle(1).css" rel="stylesheet" type="text/css">
-
-
 <div id="db-nav-sns" class="nav">
     <div class="nav-wrap">
         <div class="nav-primary">
@@ -98,42 +89,23 @@
 </div>
 
 
-<script src="/js/bundle(2).js" defer="defer"></script>
-
-
 <div id="wrapper">
-
-
     <div id="content">
-
-
         <div class="grid-16-8 clearfix">
-
-
             <div class="article drop-area ui-sortable">
-
-
                 <div id="db-usr-profile">
-
                     <div class="info">
-
                         <ul>
                             <li><a id="" href="/user/info">我的书架</a></li>
                             <li><a id="usr-profile-nav-statuses"
                                    href="/user/video">我的视频</a></li>
                             <c:if test="${user.type==1}">
-                                <li><a id="" href="/user/manager">用户管理</a></li>
+                                <li><a id="" href="/user/manager?userUuid=${user.userUuid}">用户管理</a></li>
                             </c:if>
                         </ul>
                     </div>
                 </div>
                 <div class="clear"></div>
-
-
-                <script type="text/javascript" src="/js/ajaxfileupload.js"></script>
-                <script type="text/javascript" src="/js/imgsel.js"></script>
-                <script type="text/javascript" src="/js/userguide.js"></script>
-
 
                 <div class="sort " id="book">
                     <div class="photo-btns">
@@ -167,47 +139,26 @@
                         </table>
                     </div>
                 </div>
-
-
                 <div class="sort " id="movie">
-
-
                 </div>
-
-
             </div>
             <div class="aside drop-area ui-sortable">
-
-
                 <div id="profile">
-
-
                     <div class="infobox">
                         <div class="ex1"><span></span></div>
                         <div class="bd">
-
                             <div class="basic-info">
-
                                 <img src="/image/user_normal.jpg" class="userface" alt="">
-
                                 <div class="user-info">
                                     <div class="pl">
                                         <fmt:formatDate value="${user.createTime}" pattern="yyyy-MM-dd"/>加入
                                     </div>
-
                                 </div>
                             </div>
-
                         </div>
                     </div>
-
-
                 </div>
-
-
                 <script src="/js/jquery.elastic.js"></script>
-
-
             </div>
 
 </body>

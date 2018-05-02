@@ -36,7 +36,7 @@ CREATE TABLE `novel` (
   `update_uid` varchar(32) NOT NULL COMMENT '更新人uuid',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_novel_uuid` (`novel_uuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='小说表'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='小说表';
 
 
 

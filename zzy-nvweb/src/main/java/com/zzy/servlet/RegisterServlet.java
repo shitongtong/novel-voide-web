@@ -1,8 +1,6 @@
 package com.zzy.servlet;
 
-import com.zzy.db.DBOperation;
 import com.zzy.service.UserService;
-import com.zzy.util.UUIDUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +12,7 @@ import java.io.IOException;
 /**
  * Created by stt on 2018/4/30.
  */
-@WebServlet("/user/register")
+@WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

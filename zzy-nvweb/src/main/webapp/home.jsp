@@ -10,7 +10,7 @@
     <meta http-equiv="Expires" content="Sun, 6 Mar 2005 01:00:00 GMT">
 
     <title>
-        豆瓣读书
+        子依读书
     </title>
     <link href="/css/bundle(1).css" rel="stylesheet" type="text/css">
     <link href="/css/master.css" rel="stylesheet" type="text/css">
@@ -76,16 +76,16 @@
         <div class="global-nav-items">
             <ul>
                 <li class="">
-                    <a href="https://www.douban.com/" target="_blank"
-                       data-moreurl-dict="{&quot;from&quot;:&quot;top-nav-click-main&quot;,&quot;uid&quot;:&quot;0&quot;}">豆瓣</a>
+                    <a href="/home?userUuid=${user.userUuid}"
+                       data-moreurl-dict="{&quot;from&quot;:&quot;top-nav-click-main&quot;,&quot;uid&quot;:&quot;0&quot;}">首页</a>
                 </li>
                 <li class="on">
-                    <a href="https://book.douban.com/"
+                    <a href="/home?userUuid=${user.userUuid}"
                        data-moreurl-dict="{&quot;from&quot;:&quot;top-nav-click-book&quot;,&quot;uid&quot;:&quot;0&quot;}">读书</a>
                 </li>
                 <li class="">
                     <a href="https://movie.douban.com/" target="_blank"
-                       data-moreurl-dict="{&quot;from&quot;:&quot;top-nav-click-movie&quot;,&quot;uid&quot;:&quot;0&quot;}">电影</a>
+                       data-moreurl-dict="{&quot;from&quot;:&quot;top-nav-click-movie&quot;,&quot;uid&quot;:&quot;0&quot;}">视频</a>
                 </li>
             </ul>
         </div>
@@ -120,7 +120,7 @@
                                         <c:forEach items="${novelList}" var="novel">
                                             <li class="">
                                                 <div class="cover">
-                                                    <a href="https://book.douban.com/subject/30151815/?icn=index-latestbook-subject"
+                                                    <a href="/comment?novelUuid=${novel.novelUuid}&userUuid=${user.userUuid}"
                                                        title="${novel.name}">
                                                         <img src="${novel.photo}" class="" width="176px"
                                                              height="202px" alt="${novel.name}">
@@ -129,7 +129,7 @@
                                                 <div class="info">
                                                     <div class="title">
                                                         <a class=""
-                                                           href="https://book.douban.com/subject/30151815/?icn=index-latestbook-subject"
+                                                           href="/comment?novelUuid=${novel.novelUuid}&userUuid=${user.userUuid}"
                                                            title="${novel.name}">${novel.name}</a>
                                                     </div>
                                                     <div class="author">
