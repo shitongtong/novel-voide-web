@@ -9,7 +9,7 @@
     <meta name="referrer" content="always">
 
     <title>
-        欢迎加入豆瓣
+        欢迎加入子依读书
     </title>
 
 
@@ -27,7 +27,7 @@
 <div class="wrapper">
 
     <h1>
-        欢迎加入豆瓣
+        欢迎加入子依读书
     </h1>
 
     <div class="article">
@@ -59,7 +59,7 @@
     </div>
     <div class="aside">
         <ul class="sidenav">
-            <li>&gt;&nbsp;还没有帐号? <a rel="nofollow" href="https://accounts.douban.com/login">立即注册</a></li>
+            <li>&gt;&nbsp;还没有帐号? <a rel="nofollow" href="http://localhost:8080/register.jsp">立即注册</a></li>
 
         </ul>
 

@@ -102,26 +102,16 @@
 
 
 <div id="wrapper">
-
-
     <div id="content">
-
-
         <div class="grid-16-8 clearfix">
-
-
             <div class="article drop-area ui-sortable">
-
-
                 <div id="db-usr-profile">
-
                     <div class="info">
-
                         <ul>
                             <li><a id="" href="/user/info">我的书架</a></li>
                             <li><a id="usr-profile-nav-statuses"
                                    href="/user/video">我的视频</a></li>
-                            <c:if test="${user.tye==1}">
+                            <c:if test="${user.type==1}">
                                 <li><a id="" href="/user/manager">用户管理</a></li>
                             </c:if>
                         </ul>
@@ -136,11 +126,12 @@
 
 
                 <div class="sort " id="book">
-                    <div class="photo-btns">
+                    <%--<div class="photo-btns">
                         <span class="btn-pic-upload">
-                            <a class="lnk-create lnk-create-album" target="_blank" href="http://localhost:8080/user/uploadBook.jsp"><i>+</i>新增小说</a>
+                            <a class="lnk-create lnk-create-album" target="_blank" href="/user/addBook?userUuid=${user.userUuid}">
+                                <i>+</i>新增小说</a>
                         </span>
-                    </div>
+                    </div>--%>
                     <div>
                         <table>
                             <tr>

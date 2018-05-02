@@ -9,7 +9,7 @@ public class Comment extends BasePo {
     private String commentUuid;
     private String novelUuid;
     private String content;
-    private String usenum;
+    private String usernum;
 
     public String getCommentUuid() {
         return commentUuid;
@@ -35,11 +35,11 @@ public class Comment extends BasePo {
         this.content = content;
     }
 
-    public String getUsenum() {
-        return usenum;
+    public String getUsernum() {
+        return usernum;
     }
 
-    public void setUsenum(String usenum) {
-        this.usenum = usenum;
+    public void setUsernum(String usernum) {
+        this.usernum = usernum;
     }
 }

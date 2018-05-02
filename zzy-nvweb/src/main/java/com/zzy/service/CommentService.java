@@ -25,7 +25,7 @@ public class CommentService {
     public List<CommentDto> findByNovelUuid(String novelUuid) {
         String sql = "select c.comment_uuid,c.novel_uuid,u.user_uuid,u.name,c.create_time,c.usernum,c.content " +
                 "from comment c left join user u on u.user_uuid=c.create_uid " +
-                "where c.status=1 and c.novel_uuid=?";
+                "where c.status=1 and c.novel_uuid=? order by c.usernum desc,c.create_time desc";
         String[] params = new String[]{novelUuid};
         List<List<Object>> lists = DBOperation.executeQuery(sql, params, 7);
         List<CommentDto> commentDtoList = new ArrayList<>();
@@ -41,7 +41,6 @@ public class CommentService {
             commentDto.setContent((String) objects.get(6));
             commentDtoList.add(commentDto);
         }
-
         return commentDtoList;
     }
 
@@ -59,17 +58,9 @@ public class CommentService {
         return comment;
     }
 
-    public Comment update(String commentUuid) {
-        String sql = "select novel_uuid,create_uid from comment where comment_uuid=?";
+    public boolean update(String commentUuid) {
+        String sql = "update comment set usernum=usernum+1 where comment_uuid=?";
         String[] params = new String[]{commentUuid};
-        List<List<Object>> lists = DBOperation.executeQuery(sql, params, 2);
-        if (lists.size()==0){
-            return null;
-        }
-        List<Object> objects = lists.get(0);
-        Comment comment = new Comment();
-        comment.setNovelUuid((String) objects.get(0));
-        comment.setCreateUid((String) objects.get(1));
-        return comment;
+        return DBOperation.executeUpdate(sql,params);
     }
 }

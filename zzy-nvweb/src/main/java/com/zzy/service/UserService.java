@@ -4,8 +4,6 @@ import com.zzy.db.DBOperation;
 import com.zzy.po.User;
 import com.zzy.util.UUIDUtil;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -116,6 +114,7 @@ public class UserService {
         List<User> userList = new ArrayList<>();
         User user = new User();
         for (List<Object> objects:lists){
+            user = new User();
             user.setId((Integer) objects.get(0));
             user.setUserUuid((String) objects.get(1));
             user.setName((String) objects.get(2));
