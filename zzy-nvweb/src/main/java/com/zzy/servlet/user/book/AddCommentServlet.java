@@ -1,7 +1,6 @@
-package com.zzy.servlet.user;
+package com.zzy.servlet.user.book;
 
-import com.zzy.po.User;
-import com.zzy.service.UserService;
+import com.zzy.service.CommentService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,8 +12,8 @@ import java.io.IOException;
 /**
  * Created by stt on 2018/4/29.
  */
-@WebServlet("/user/addBook")
-public class AddBookServlet extends HttpServlet {
+@WebServlet("/user/addComment")
+public class AddCommentServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,10 +23,13 @@ public class AddBookServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userUuid = req.getParameter("userUuid");
-        UserService userService = new UserService();
-        User user = userService.findByUserUuid(userUuid);
-        req.setAttribute("user", user);
+        String novelUuid = req.getParameter("novelUuid");
+        String content = req.getParameter("content");
 
-        req.getRequestDispatcher("/user/uploadBook.jsp").forward(req, resp);
+        //评论
+        CommentService commentService = new CommentService();
+        commentService.save(content, novelUuid, userUuid);
+
+        req.getRequestDispatcher("/comment?novelUuid=" + novelUuid + "&userUuid=" + userUuid).forward(req, resp);
     }
 }

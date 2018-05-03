@@ -1,7 +1,7 @@
-package com.zzy.servlet.user;
+package com.zzy.servlet.user.movie;
 
 import com.zzy.po.User;
-import com.zzy.service.NovelService;
+import com.zzy.service.MovieService;
 import com.zzy.service.UserService;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -22,16 +22,16 @@ import java.util.Map;
 /**
  * Created by stt on 2018/4/29.
  */
-@WebServlet("/upload")
-public class UploadServlet extends HttpServlet {
+@WebServlet("/uploadMovie")
+public class UploadMovieServlet extends HttpServlet {
 
     // 上传文件存储目录
     private static final String UPLOAD_DIRECTORY = "upload";
 
     // 上传配置
-    private static final int MEMORY_THRESHOLD = 1024 * 1024 * 10;  // 3MB
-    private static final int MAX_FILE_SIZE = 1024 * 1024 * 100; // 40MB
-    private static final int MAX_REQUEST_SIZE = 1024 * 1024 * 150; // 50MB
+    private static final int MEMORY_THRESHOLD = 1024 * 1024 * 10;
+    private static final int MAX_FILE_SIZE = 1024 * 1024 * 1000;
+    private static final int MAX_REQUEST_SIZE = 1024 * 1024 * 1500;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -78,7 +78,7 @@ public class UploadServlet extends HttpServlet {
         if (!uploadDir.exists()) {
             uploadDir.mkdir();
         }
-        Map<String,String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>();
         try {
             // 解析请求的内容提取文件数据
             @SuppressWarnings("unchecked")
@@ -98,30 +98,38 @@ public class UploadServlet extends HttpServlet {
                         item.write(storeFile);
                         req.setAttribute("msg", "文件上传成功!");
 
-                        map.put("name",fileName);
-                        String url = "http://localhost:8080/"+filePath.substring(filePath.indexOf(UPLOAD_DIRECTORY));
-                        map.put("url",url);
-                    }else{
+                        String url = "http://localhost:8080/" + UPLOAD_DIRECTORY + "/" + fileName;
+                        map.put("url", url);
+                    } else {
                         String fieldName = item.getFieldName();
                         String value = item.getString();
-                        value = new String(value.getBytes("iso-8859-1"),"utf-8");
-                        map.put(fieldName,value);
+                        value = new String(value.getBytes("iso-8859-1"), "utf-8");
+                        map.put(fieldName, value);
                     }
 
                 }
             }
+
+            UserService userService = new UserService();
+            String userUuid = map.get("userUuid");
+            User user = userService.findByUserUuid(userUuid);
+            req.setAttribute("user", user);
+
+            MovieService movieService = new MovieService();
+            String photo = "http://localhost:8080/image/movie.jpg";
+            String name = map.get("name");
+            String url = map.get("url");
+            String director = map.get("director");
+            String screenwriter = map.get("screenwriter");
+            String starring = map.get("starring");
+            String intro = map.get("intro");
+            movieService.save(name, url, director, screenwriter, starring, intro, photo, userUuid);
+            req.getRequestDispatcher("/user/movieInfo?userUuid=" + user.getUserUuid()).forward(req, resp);
         } catch (Exception ex) {
-            req.setAttribute("msg","上传失败");
+            req.setAttribute("msg", "上传失败,请联系管理员!");
             req.getRequestDispatcher("/user/message.jsp").forward(req, resp);
         }
 
-        UserService userService = new UserService();
-        User user = userService.findByUserUuid(map.get("userUuid"));
-        req.setAttribute("user",user);
 
-        NovelService novelService = new NovelService();
-        String photo = "http://localhost:8080/image/nophoto.jpeg";
-        novelService.save(map.get("name"),map.get("url"),map.get("author"),map.get("intro"),photo,map.get("userUuid"));
-        req.getRequestDispatcher("/user/info?userUuid="+user.getUserUuid()).forward(req, resp);
     }
 }

@@ -1,6 +1,7 @@
-package com.zzy.servlet;
+package com.zzy.servlet.user;
 
-import com.zzy.po.User;
+import com.zzy.constants.Constant;
+import com.zzy.util.DownloadUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,11 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by stt on 2018/4/29.
+ * @Author shitongtong
+ * <p>
+ * Created by shitongtong on 2018/5/3.
  */
-@WebServlet("/homeVideo")
-public class HomeVideoServlet extends HttpServlet {
-
+@WebServlet("/user/download")
+public class DownloadServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
@@ -22,8 +24,8 @@ public class HomeVideoServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = (User) req.getAttribute("user");
-        System.out.println(user);
-        req.getRequestDispatcher("/homeVideo.jsp").forward(req, resp);
+        String url = req.getParameter("url");
+        String fileName = url.substring(url.lastIndexOf(Constant.FILESEPARATOR) + 1);
+        DownloadUtil.download(resp, url, fileName);
     }
 }

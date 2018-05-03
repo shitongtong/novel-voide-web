@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="Sun, 6 Mar 2005 01:00:00 GMT">
-    <title>${novel.name}</title>
+    <title>${movie.name}</title>
     <link type="text/css" rel="stylesheet" href="/css/dialog.css">
     <link type="text/css" rel="stylesheet" href="/css/setting_standalone.css">
     <link type="text/css" rel="stylesheet" href="/css/report_dialog.css">
@@ -43,7 +43,6 @@
 
 <div id="db-global-nav" class="global-nav">
     <div class="bd">
-
         <div class="top-nav-info">
             <ul>
                 <li class="nav-user-account">
@@ -101,7 +100,7 @@
 <div id="wrapper">
     <div id="dale_book_subject_top_icon" ad-status="loaded"></div>
     <h1>
-        <span property="v:itemreviewed">${novel.name}</span>
+        <span property="v:itemreviewed">${movie.name}</span>
         <div class="clear"></div>
     </h1>
 
@@ -112,33 +111,35 @@
                     <div class="subjectwrap clearfix">
                         <div class="subject clearfix">
                             <div id="mainpic" class="">
-                                <a class="nbg" href="${novel.photo}" title="${novel.name}">
-                                    <img src="${novel.photo}" title="点击看大图" alt="${novel.name}" rel="v:photo"
-                                         style="width: 176px;height: 202px">
+                                <a class="nbg" href="${movie.photo}" title="${movie.name}">
+                                    <img src="${movie.photo}" title="点击看大图" alt="${movie.name}" rel="v:photo"
+                                         style="width: 284px;height: 177px">
                                 </a>
                             </div>
                             <div id="info" class="">
                                 <span>
-                                  <span class="pl"> 作者</span>:
-                                        <a class="" href="#">${novel.author}</a>
+                                  <span class="pl"> 导演</span>:
+                                        <a class="" href="#">${movie.director}</a>
+                                </span>
+                                <br>
+                                <span>
+                                  <span class="pl"> 编剧</span>:
+                                        <a class="" href="#">${movie.screenwriter}</a>
+                                </span>
+                                <br>
+                                <span>
+                                  <span class="pl"> 主演</span>:
+                                        <a class="" href="#">${movie.screenwriter}</a>
                                 </span>
                                 <br>
                                 <br>
                                 <br>
                                 <br>
                                 <br>
-                                <br>
-                                <br>
                                 <span>
-                                    <a href="${novel.url}">查看内容</a>
-                                </span>
-                                <br>
-                                <br>
-                                <span>
-                                    <a href="/user/download?userUuid=${user.userUuid}&url=${novel.url}">下载</a>
+                                        <a href="/user/download?userUuid=${user.userUuid}&url=${movie.url}">下载</a>
                                 </span>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -150,7 +151,7 @@
                     <div class="indent" id="link-report">
                           <span class="short">
                             <div class="intro">
-                                ${novel.intro}
+                                ${movie.intro}
                             </div>
                            </span>
                         <div class="mod-hd">
@@ -160,9 +161,9 @@
                                   <span class="pl">&nbsp;
                                      </span>
                             </h2>
-                            <form id="addCommentForm" method="post" action="/user/addComment">
+                            <form id="addMovieCommentForm" method="post" action="/user/addMovieComment">
                                 <input type="hidden" name="userUuid" value="${user.userUuid}"/>
-                                <input type="hidden" name="novelUuid" value="${novel.novelUuid}"/>
+                                <input type="hidden" name="movieUuid" value="${movie.movieUuid}"/>
                                 <textarea rows="5" name="content" style="width: 500px"></textarea>
                                 <br/>
                                 <input type="submit" name="submit"/>
@@ -182,8 +183,8 @@
                                                     <h3>
                                                             <span class="comment-vote" style="float: right">
                                                                 <span id="c-1351321688" class="vote-count">${dto.usernum}</span>
-                                                                <a href="/user/addUsenum?userUuid=${user.userUuid}&commentUuid=${dto.commentUuid}" id="btn-1351321688" class="j vote-comment"
-                                                                   data-cid="1351321688">有用</a>
+                                                                <a href="/user/addMovieUsenum?userUuid=${user.userUuid}&movieCommentUuid=${dto.movieCommentUuid}" id="btn-1351321688"
+                                                                   class="j vote-comment" data-cid="1351321688">有用</a>
                                                             </span>
                                                             <span class="comment-info">
                                                                 <a href="javascript:;">${dto.userName}</a>

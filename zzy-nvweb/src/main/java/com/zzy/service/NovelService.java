@@ -37,7 +37,7 @@ public class NovelService {
      */
     public List<Novel> findByUserUuid(String userUuid) {
         String sql = "select novel_uuid,name,url,author,intro,photo,create_time " +
-                "from novel where status=1 and create_uid=?";
+                "from novel where status=1 and create_uid=? order by create_time desc";
         String[] params = new String[]{userUuid};
         List<List<Object>> lists = DBOperation.executeQuery(sql, params, 7);
         if (lists.size()==0){
@@ -62,7 +62,7 @@ public class NovelService {
 
     public List<Novel> findAll() {
         String sql = "select novel_uuid,name,url,author,intro,photo,create_time " +
-                "from novel where status=1";
+                "from novel where status=1 order by create_time desc";
         String[] params = new String[]{};
         List<List<Object>> lists = DBOperation.executeQuery(sql, params, 7);
         if (lists.size()==0){

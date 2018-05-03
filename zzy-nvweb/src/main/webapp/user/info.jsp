@@ -28,12 +28,12 @@
     <script type="text/javascript" src="/js/ajaxfileupload.js"></script>
     <script type="text/javascript" src="/js/imgsel.js"></script>
     <script type="text/javascript" src="/js/userguide.js"></script>
+    <script src="/js/jquery.elastic.js"></script>
 </head>
 
 <body>
 <div id="db-global-nav" class="global-nav">
     <div class="bd">
-
         <div class="top-nav-info">
             <ul>
                 <li class="nav-user-account">
@@ -45,7 +45,7 @@
                             <tbody>
                             <tr>
                                 <td>
-                                    <a href="/user/info">个人主页</a>
+                                    <a href="/user/info?userUuid=${user.userUuid}">个人主页</a>
                                 </td>
                             </tr>
                             <tr>
@@ -71,7 +71,7 @@
                        data-moreurl-dict="{&quot;from&quot;:&quot;top-nav-click-book&quot;,&quot;uid&quot;:&quot;178031345&quot;}">读书</a>
                 </li>
                 <li class="">
-                    <a href="https://movie.douban.com/" target="_blank"
+                    <a href="/homeMovie?userUuid=${user.userUuid}" target="_blank"
                        data-moreurl-dict="{&quot;from&quot;:&quot;top-nav-click-movie&quot;,&quot;uid&quot;:&quot;178031345&quot;}">电影</a>
                 </li>
             </ul>
@@ -96,11 +96,11 @@
                 <div id="db-usr-profile">
                     <div class="info">
                         <ul>
-                            <li><a id="" href="/user/info">我的书架</a></li>
+                            <li><a href="/user/info?userUuid=${user.userUuid}">我的书架</a></li>
                             <li><a id="usr-profile-nav-statuses"
-                                   href="/user/video">我的视频</a></li>
+                                   href="/user/movieInfo?userUuid=${user.userUuid}">我的视频</a></li>
                             <c:if test="${user.type==1}">
-                                <li><a id="" href="/user/manager?userUuid=${user.userUuid}">用户管理</a></li>
+                                <li><a href="/user/manager?userUuid=${user.userUuid}">用户管理</a></li>
                             </c:if>
                         </ul>
                     </div>
@@ -158,7 +158,6 @@
                         </div>
                     </div>
                 </div>
-                <script src="/js/jquery.elastic.js"></script>
             </div>
 
 </body>

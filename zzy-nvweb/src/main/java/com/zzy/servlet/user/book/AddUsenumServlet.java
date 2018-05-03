@@ -1,4 +1,4 @@
-package com.zzy.servlet.user;
+package com.zzy.servlet.user.book;
 
 import com.zzy.po.Comment;
 import com.zzy.service.CommentService;
@@ -23,6 +23,7 @@ public class AddUsenumServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         String commentUuid = req.getParameter("commentUuid");
         CommentService commentService = new CommentService();
         commentService.update(commentUuid);
@@ -30,6 +31,6 @@ public class AddUsenumServlet extends HttpServlet {
         Comment comment = commentService.findByCommentUuid(commentUuid);
         String novelUuid = comment.getNovelUuid();
         String userUuid = comment.getCreateUid();
-        req.getRequestDispatcher("/comment?novel_uuid=" + novelUuid + "&userUuid=" + userUuid).forward(req, resp);
+        req.getRequestDispatcher("/comment?novelUuid=" + novelUuid + "&userUuid=" + userUuid).forward(req, resp);
     }
 }

@@ -1,6 +1,8 @@
-package com.zzy.servlet.user;
+package com.zzy.servlet.user.movie;
 
-import com.zzy.service.NovelService;
+import com.zzy.po.Movie;
+import com.zzy.po.User;
+import com.zzy.service.MovieService;
 import com.zzy.service.UserService;
 
 import javax.servlet.ServletException;
@@ -9,12 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by stt on 2018/4/29.
  */
-@WebServlet("/user/deleteBook")
-public class DeleteBookServlet extends HttpServlet {
+@WebServlet("/user/movieInfo")
+public class MovieInfoServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,11 +26,14 @@ public class DeleteBookServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String novelUuid = req.getParameter("novelUuid");
-        NovelService novelService = new NovelService();
-        novelService.delete(novelUuid);
-
         String userUuid = req.getParameter("userUuid");
-        req.getRequestDispatcher("/user/info?userUuid="+userUuid).forward(req, resp);
+        UserService userService = new UserService();
+        User user = userService.findByUserUuid(userUuid);
+        req.setAttribute("user", user);
+
+        MovieService movieService = new MovieService();
+        List<Movie> movieList = movieService.findByUserUuid(userUuid);
+        req.setAttribute("movieList", movieList);
+        req.getRequestDispatcher("/user/movieInfo.jsp").forward(req, resp);
     }
 }

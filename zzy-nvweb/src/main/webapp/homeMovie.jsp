@@ -10,7 +10,7 @@
     <meta http-equiv="Expires" content="Sun, 6 Mar 2005 01:00:00 GMT">
 
     <title>
-        子依读书
+        子依电影
     </title>
     <link href="/css/bundle(1).css" rel="stylesheet" type="text/css">
     <link href="/css/master.css" rel="stylesheet" type="text/css">
@@ -100,159 +100,53 @@
 </div>
 
 <div id="wrapper">
-
     <div id="content">
         <div class="grid-16-8 clearfix">
             <div class="article">
                 <div class="section books-express ">
                     <div class="hd">
-
                         <h2 class="">
-                            <span class="">图书列表</span>
+                            <span class="">电影列表</span>
                         </h2>
                     </div>
                     <div class="bd">
                         <div class="carousel">
                             <div class="slide-list" style="height: auto">
-                                <c:forEach items="${novelListList}" var="novelList">
+                                <c:forEach items="${movieListList}" var="movieList">
                                     <ul class="list-col list-col5 list-express slide-item clone">
-                                        <c:forEach items="${novelList}" var="novel">
+                                        <c:forEach items="${movieList}" var="movie">
                                             <li class="">
                                                 <div class="cover">
-                                                    <a href="/comment?novelUuid=${novel.novelUuid}&userUuid=${user.userUuid}"
-                                                       title="${novel.name}">
-                                                        <img src="${novel.photo}" class="" width="176px"
-                                                             height="202px" alt="${novel.name}">
+                                                    <a href="/movieComment?movieUuid=${movie.movieUuid}&userUuid=${user.userUuid}"
+                                                       title="${movie.name}">
+                                                        <img src="${movie.photo}" class="" width="284px"
+                                                             height="177px" alt="${movie.name}">
                                                     </a>
                                                 </div>
                                                 <div class="info">
                                                     <div class="title">
                                                         <a class=""
-                                                           href="/comment?novelUuid=${novel.novelUuid}&userUuid=${user.userUuid}"
-                                                           title="${novel.name}">${novel.name}</a>
+                                                           href="/movieComment?movieUuid=${movie.movieUuid}&userUuid=${user.userUuid}"
+                                                           title="${movie.name}">${movie.name}</a>
+                                                    </div>
+                                                    <div class="more-meta">
+                                                        <h4 class="title">
+                                                                ${movie.name}
+                                                        </h4>
+                                                        <p class="abstract">
+                                                                ${movie.intro}
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </li>
                                         </c:forEach>
-
                                     </ul>
                                 </c:forEach>
-
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
-
         </div>
-
-
-        <script type="text/javascript" src="./js/14a849b70e265daa.js"></script>
-        <!-- mako -->
-
-
-        <script>
-            window.user_id = window.user_id || ''
-            define.config({
-                'ui/slide': 'Book.slide'
-                , 'ui/bubble': 'Book.Bubble'
-            })
-            Do.add('book/index', {path: 'https://img3.doubanio.com/f/book/50b2790ba59deba551045acc3fd335f868155ec8/js/book/index.js'})
-            Do.add('ui/slide', {path: 'https://img3.doubanio.com/f/book/2f473e3eae1803f9e743ea632607ad4f9677fb3b/js/book/ui/slide.js'})
-            Do.add('ui/bubble', {path: 'https://img3.doubanio.com/f/book/95c407df830e0ab6119ed622ee42033acf0af414/js/book/ui/bubble.js'})
-            Do.add('widget/tabs', {path: 'https://img3.doubanio.com/f/book/1c240c18b397f6c8583254c27b9c1f1ecebb6075/js/book/widget/tabs.js'})
-            Do('book/index')
-        </script>
-
-
-        <script type="text/javascript">
-            var _paq = _paq || [];
-            _paq.push(['trackPageView']);
-            _paq.push(['enableLinkTracking']);
-            (function () {
-                var p = (('https:' == document.location.protocol) ? 'https' : 'http'), u = p + '://fundin.douban.com/';
-                _paq.push(['setTrackerUrl', u + 'piwik']);
-                _paq.push(['setSiteId', '100001']);
-                var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
-                g.type = 'text/javascript';
-                g.defer = true;
-                g.async = true;
-                g.src = p + '://s.doubanio.com/dae/fundin/piwik.js';
-                s.parentNode.insertBefore(g, s);
-            })();
-        </script>
-
-        <script type="text/javascript">
-            var setMethodWithNs = function (namespace) {
-                var ns = namespace ? namespace + '.' : ''
-                        , fn = function (string) {
-                    if (!ns) {
-                        return string
-                    }
-                    return ns + string
-                }
-                return fn
-            }
-
-            var gaWithNamespace = function (fn, namespace) {
-                var method = setMethodWithNs(namespace)
-                fn.call(this, method)
-            }
-
-            var _gaq = _gaq || []
-                    , accounts = [
-                {id: 'UA-7019765-1', namespace: 'douban'}
-                , {id: 'UA-7019765-16', namespace: ''}
-            ]
-                    , gaInit = function (account) {
-                gaWithNamespace(function (method) {
-                    gaInitFn.call(this, method, account)
-                }, account.namespace)
-            }
-                    , gaInitFn = function (method, account) {
-                _gaq.push([method('_setAccount'), account.id])
-
-
-                _gaq.push([method('_addOrganic'), 'google', 'q'])
-                _gaq.push([method('_addOrganic'), 'baidu', 'wd'])
-                _gaq.push([method('_addOrganic'), 'soso', 'w'])
-                _gaq.push([method('_addOrganic'), 'youdao', 'q'])
-                _gaq.push([method('_addOrganic'), 'so.360.cn', 'q'])
-                _gaq.push([method('_addOrganic'), 'sogou', 'query'])
-                if (account.namespace) {
-                    _gaq.push([method('_addIgnoredOrganic'), '豆瓣'])
-                    _gaq.push([method('_addIgnoredOrganic'), 'douban'])
-                    _gaq.push([method('_addIgnoredOrganic'), '豆瓣网'])
-                    _gaq.push([method('_addIgnoredOrganic'), 'www.douban.com'])
-                }
-
-                if (account.namespace === 'douban') {
-                    _gaq.push([method('_setDomainName'), '.douban.com'])
-                }
-
-                _gaq.push([method('_setCustomVar'), 1, 'responsive_view_mode', 'desktop', 3])
-
-                _gaq.push([method('_setCustomVar'), 2, 'login_status', '0', 2]);
-
-                _gaq.push([method('_trackPageview')])
-            }
-
-            for (var i = 0, l = accounts.length; i < l; i++) {
-                var account = accounts[i]
-                gaInit(account)
-            }
-
-
-            ;
-            (function () {
-                var ga = document.createElement('script');
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                ga.setAttribute('async', 'true');
-                document.documentElement.firstChild.appendChild(ga);
-            })()
-        </script>
-
 </body>
 </html>

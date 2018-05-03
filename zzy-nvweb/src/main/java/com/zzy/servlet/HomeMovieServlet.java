@@ -1,8 +1,8 @@
 package com.zzy.servlet;
 
-import com.zzy.po.Novel;
+import com.zzy.po.Movie;
 import com.zzy.po.User;
-import com.zzy.service.NovelService;
+import com.zzy.service.MovieService;
 import com.zzy.service.UserService;
 
 import javax.servlet.ServletException;
@@ -19,8 +19,8 @@ import static com.zzy.constants.Constant.COLUMNSIZE;
 /**
  * Created by stt on 2018/4/29.
  */
-@WebServlet("/home")
-public class HomeServlet extends HttpServlet {
+@WebServlet("/homeMovie")
+public class HomeMovieServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,30 +34,30 @@ public class HomeServlet extends HttpServlet {
         User user = userService.findByUserUuid(userUuid);
         req.setAttribute("user", user);
 
-        NovelService novelService = new NovelService();
-        List<Novel> novelList = novelService.findAll();
-        List<List<Novel>> novelListList = new ArrayList<>();
-        if (novelList != null && novelList.size() > 0) {
-            int size = novelList.size();
+        MovieService movieService = new MovieService();
+        List<Movie> movieList = movieService.findAll();
+        List<List<Movie>> movieListList = new ArrayList<>();
+        if (movieList != null && movieList.size() > 0) {
+            int size = movieList.size();
 
             int i = size / COLUMNSIZE;
             int j = size % COLUMNSIZE;
 
             for (int k = 0; k < i; k++) {
-                List<Novel> novelListT = new ArrayList<>();
+                List<Movie> movieListT = new ArrayList<>();
                 for (int l = 0; l < COLUMNSIZE; l++) {
-                    novelListT.add(novelList.get(COLUMNSIZE * k + l));
+                    movieListT.add(movieList.get(COLUMNSIZE * k + l));
                 }
-                novelListList.add(novelListT);
+                movieListList.add(movieListT);
             }
-            List<Novel> novelListT = new ArrayList<>();
+            List<Movie> movieListT = new ArrayList<>();
             for (int k = 0; k < j; k++) {
-                novelListT.add(novelList.get(COLUMNSIZE * i + k));
+                movieListT.add(movieList.get(COLUMNSIZE * i + k));
             }
-            novelListList.add(novelListT);
+            movieListList.add(movieListT);
         }
 
-        req.setAttribute("novelListList", novelListList);
-        req.getRequestDispatcher("/home.jsp").forward(req, resp);
+        req.setAttribute("movieListList", movieListList);
+        req.getRequestDispatcher("/homeMovie.jsp").forward(req, resp);
     }
 }

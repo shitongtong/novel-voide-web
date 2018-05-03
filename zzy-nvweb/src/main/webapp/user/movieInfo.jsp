@@ -5,11 +5,11 @@
 <html lang="zh-cmn-Hans" class="ua-mac ua-webkit">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="Sun, 6 Mar 2005 01:00:00 GMT">
     <title>
         ${user.name}
     </title>
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="Sun, 6 Mar 2005 01:00:00 GMT">
 
     <link href="/css/douban.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" defer="" async="" src="/js/piwik.js"></script>
@@ -20,15 +20,20 @@
     <script type="text/javascript" src="/js/follow.js"></script>
     <script type="text/javascript" src="/js/jquery-ui-sortable.js"></script>
     <script type="text/javascript" src="/js/mine_dragdrop.js"></script>
+    <script src="/js/ga.js" ></script>
+    <link href="/css/bundle.css" rel="stylesheet" type="text/css">
     <script src="/js/bundle.js" defer="defer"></script>
     <link href="/css/bundle(1).css" rel="stylesheet" type="text/css">
-    <link href="/css/bundle.css" rel="stylesheet" type="text/css">
-    <script src="/js/ga.js" async="true"></script>
+    <script src="/js/bundle(2).js" defer="defer"></script>
+    <script type="text/javascript" src="/js/ajaxfileupload.js"></script>
+    <script type="text/javascript" src="/js/imgsel.js"></script>
+    <script type="text/javascript" src="/js/userguide.js"></script>
+    <script src="/js/jquery.elastic.js"></script>
 </head>
+
 <body>
 <div id="db-global-nav" class="global-nav">
     <div class="bd">
-
         <div class="top-nav-info">
             <ul>
                 <li class="nav-user-account">
@@ -40,7 +45,7 @@
                             <tbody>
                             <tr>
                                 <td>
-                                    <a href="/user/info">个人主页</a>
+                                    <a href="/user/info?userUuid=${user.userUuid}">个人主页</a>
                                 </td>
                             </tr>
                             <tr>
@@ -54,7 +59,6 @@
                 </li>
             </ul>
         </div>
-
 
         <div class="global-nav-items">
             <ul>
@@ -85,9 +89,6 @@
 </div>
 
 
-<script src="/js/bundle(2).js" defer="defer"></script>
-
-
 <div id="wrapper">
     <div id="content">
         <div class="grid-16-8 clearfix">
@@ -96,7 +97,8 @@
                     <div class="info">
                         <ul>
                             <li><a href="/user/info?userUuid=${user.userUuid}">我的书架</a></li>
-                            <li><a id="usr-profile-nav-statuses" href="/user/movieInfo?userUuid=${user.userUuid}">我的电影</a></li>
+                            <li><a id="usr-profile-nav-statuses"
+                                   href="/user/movieInfo?userUuid=${user.userUuid}">我的电影</a></li>
                             <c:if test="${user.type==1}">
                                 <li><a href="/user/manager?userUuid=${user.userUuid}">用户管理</a></li>
                             </c:if>
@@ -105,34 +107,43 @@
                 </div>
                 <div class="clear"></div>
 
-                <script type="text/javascript" src="/js/ajaxfileupload.js"></script>
-                <script type="text/javascript" src="/js/imgsel.js"></script>
-                <script type="text/javascript" src="/js/userguide.js"></script>
-
-
                 <div class="sort " id="book">
+                    <div class="photo-btns">
+                        <span class="btn-pic-upload">
+                            <a class="lnk-create lnk-create-album" target="_blank" href="/user/addMovie?userUuid=${user.userUuid}">
+                                <i>+</i>新增电影</a>
+                        </span>
+                    </div>
                     <div>
                         <table border="1">
                             <tr>
-                                <th>用户名</th>
-                                <th>注册时间</th>
+                                <th>封面</th>
+                                <th>名称</th>
+                                <th>导演</th>
+                                <th>编剧</th>
+                                <th>主演</th>
+                                <th>简介</th>
                                 <th>操作</th>
                             </tr>
-                            <c:forEach items="${userList}" var="user1">
+                            <c:forEach items="${movieList}" var="movie">
                                 <tr>
-                                    <td>${user1.name}</td>
                                     <td>
-                                        <fmt:formatDate value="${user1.createTime}" pattern="yyyy-MM-dd"/>
+                                        <img src="${movie.photo}">
                                     </td>
+                                    <td>${movie.name}</td>
+                                    <td>${movie.director}</td>
+                                    <td>${movie.screenwriter}</td>
+                                    <td>${movie.starring}</td>
+                                    <td>${movie.intro}</td>
                                     <td>
-                                        <c:if test="${user1.type==0}">
-                                            <a href="/user/deleteUser?deleteUserUuid=${user1.userUuid}&userUuid=${user.userUuid}">删除</a>
-                                        </c:if>
+                                        <a href="/user/deleteMovie?movieUuid=${movie.movieUuid}&userUuid=${user.userUuid}">删除</a>
                                     </td>
                                 </tr>
                             </c:forEach>
                         </table>
                     </div>
+                </div>
+                <div class="sort " id="movie">
                 </div>
             </div>
             <div class="aside drop-area ui-sortable">
@@ -140,29 +151,17 @@
                     <div class="infobox">
                         <div class="ex1"><span></span></div>
                         <div class="bd">
-
                             <div class="basic-info">
-
                                 <img src="/image/user_normal.jpg" class="userface" alt="">
-
                                 <div class="user-info">
                                     <div class="pl">
                                         <fmt:formatDate value="${user.createTime}" pattern="yyyy-MM-dd"/>加入
                                     </div>
-
                                 </div>
                             </div>
-
                         </div>
                     </div>
-
-
                 </div>
-
-
-                <script src="/js/jquery.elastic.js"></script>
-
-
             </div>
 
 </body>
